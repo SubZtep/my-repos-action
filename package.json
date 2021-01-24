@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "My most recent GitHub repositories markdown",
   "type": "module",
+  "main": "index.js",
   "scripts": {
     "md": "node data_markdown.js SubZtep",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -23,6 +24,8 @@
   },
   "homepage": "https://github.com/SubZtep/my-repos-action#readme",
   "dependencies": {
+    "@actions/core": "^1.2.6",
+    "@actions/github": "^4.0.0",
     "@octokit/graphql": "^4.5.8",
     "date-fns": "^2.16.1",
     "dotenv": "^8.2.0"
