@@ -1,6 +1,6 @@
 {
   "name": "my-repos-action",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "My most recent GitHub repositories markdown",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
