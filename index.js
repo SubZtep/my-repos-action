@@ -56,13 +56,13 @@ function getMarkdown(nodes) {
 async function run() {
   try {
     const token = core.getInput("token")
-    core.degug(`token: ${token.substring(0, 5)}`)
+    core.debug(`token: ${token.substring(0, 5)}`)
     const nodes = await getNodes(token)
-    core.degug(`nodes`)
+    core.debug(`nodes`)
     const md = getMarkdown(nodes)
-    core.degug(`markdown`)
+    core.debug(`markdown: ${token.substring(0, 100)}`)
     core.setOutput("table", md)
-    core.degug(`table`)
+    core.debug(`table`)
   } catch (err) {
     core.setFailed(err.message)
   }
