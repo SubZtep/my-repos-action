@@ -53,7 +53,7 @@ const capitalize = str => str.charAt(0).toUpperCase() + str.slice(1)
 //   return markdown
 // }
 
-async function run() {
+function run() {
   try {
     const token = core.getInput("token")
     core.debug(`token: ${token.substring(0, 5)}`)
@@ -62,6 +62,7 @@ async function run() {
     // const md = getMarkdown(nodes)
     // core.debug(`markdown: ${token.substring(0, 100)}`)
     // core.setOutput("table", md)
+    console.log("Core mi Xp")
     core.setOutput("table", "hellobello")
     core.debug("table")
   } catch (err) {
