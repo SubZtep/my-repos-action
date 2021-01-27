@@ -1,12 +1,11 @@
 const core = require("@actions/core");
 const github = require("@actions/github");
-const { format } = require("date-fns/format")
-const { formatDistance } = require("date-fns/formatDistance")
-
+const format = require("date-fns/format")
+const formatDistance = require("date-fns/formatDistance")
 const capitalize = str => str.charAt(0).toUpperCase() + str.slice(1);
 
 (async function () {
-  const octokit = github.getOctokit(core.getInput("token"), { baseUrl: process.env.GITHUB_GRAPHQL_URL })
+  const octokit = github.getOctokit(core.getInput("token"), { baseUrl: core.getInput("url") })
 
   const {
     user: {

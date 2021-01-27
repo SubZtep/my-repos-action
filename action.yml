@@ -2,11 +2,14 @@ name: "My Repos"
 description: "Repost to profile"
 
 inputs:
+  url:
+    description: "GitHub GraphQL URL"
+    required: true
   token:
     description: "GitHub Personal Access Token"
     required: true
   login:
-    description: "GiyHub Username"
+    description: "GitHub Username"
     required: true
     default: SubZtep
 
