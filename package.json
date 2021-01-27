@@ -1,9 +1,8 @@
 {
   "name": "my-repos-action",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "My most recent GitHub repositories markdown",
   "scripts": {
-    "md": "node data_markdown.js SubZtep",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

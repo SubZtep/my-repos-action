@@ -1,24 +1,10 @@
 name: "My Repos"
 description: "Repost to profile"
 
+outputs:
+  table:
+    description: 'Projects markdown table'
+
 runs:
-  name: It will update the list at some point
-  runs-on: ubuntu-latest
-  steps:
-    - uses: actions/checkout@v2
-    - with: |
-        persist-credentials: false
-        fetch-depth: 0
-    - name: Update markdown
-      run: |
-          node index.js
-    - name: Commit files
-      run: |
-        git config --local user.email "$GITHUB_ACTOR@users.noreply.github.com"
-        git config --local user.name "$GITHUB_ACTOR"
-        git commit -a -m "Repository changes update"
-    - name: Push changes
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        branch: ${{ github.head_ref }}
+  using: "node12"
+  main: "index.js"

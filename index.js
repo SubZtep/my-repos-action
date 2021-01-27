@@ -56,4 +56,5 @@ nodes.forEach(repo => {
 })
 markdown += "> :hourglass: " + new Date()
 
+core.setOutput("table", markdown);
 console.log("XXX", markdown) 
