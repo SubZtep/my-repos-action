@@ -57,7 +57,7 @@ async function run() {
   try {
     const token = core.getInput("token")
     console.log("token", token.substring(0, 5))
-    const nodes = await getNodes(token)
+    const nodes = await getNodes(token))
     console.log("nodes" nodes)
     const md = getMarkdown(nodes)
     console.log("markdown", md)
