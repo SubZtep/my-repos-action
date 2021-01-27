@@ -1,21 +1,21 @@
 const core = require("@actions/core");
 const github = require("@actions/github");
-const { config } = require("dotenv")
-const { graphql } = require("@octokit/graphql")
-const { format, formatDistance } = require("date-fns")
-config()
+const { format } = require("date-fns/format")
+const { formatDistance } = require("date-fns/formatDistance")
 
 const capitalize = str => str.charAt(0).toUpperCase() + str.slice(1);
 
 (async function () {
+  const octokit = github.getOctokit(core.getInput("token"), { baseUrl: process.env.GITHUB_GRAPHQL_URL })
+
   const {
     user: {
       repositories: { nodes },
     },
-  } = await graphql(
+  } = await octokit.graphql(
     `
       {
-        user(login: "SubZtep") {
+        user(login: "${core.getInput('login')}") {
           repositories(orderBy: { field: UPDATED_AT, direction: DESC }, first: 100, privacy: PUBLIC) {
             nodes {
               id
@@ -32,12 +32,7 @@ const capitalize = str => str.charAt(0).toUpperCase() + str.slice(1);
           }
         }
       }
-    `,
-    {
-      headers: {
-        authorization: `token ${process.env.GH_ACCESS_TOKEN}`,
-      },
-    }
+    `
   )
 
   const heads = ["Project", "Description", "Web", "Archived", "Updated", "Since"]

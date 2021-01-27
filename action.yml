@@ -3,7 +3,7 @@ description: "Repost to profile"
 
 outputs:
   table:
-    description: 'Projects markdown table'
+    description: "Projects markdown table"
 
 runs:
   using: "node12"
