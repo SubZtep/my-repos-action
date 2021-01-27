@@ -1,10 +1,15 @@
-// const core = require("@actions/core");
-// const github = require("@actions/github");
-// const { getNodes, getMarkdown } = require("./repos")
+const core = require("@actions/core")
+const { getNodes, getMarkdown } = require("./repos");
 
-// const token = core.getInput("token")
-// const url = core.getInput("url")
-// const login = core.getInput("login")
-// console.log("XYZ", { url, login, token: token.substr(0, 5), tl: token.length });
+async function run() {
+  try {
+    const token = core.getInput("token")
+    const nodes = await getNodes(token)
+    const md = getMarkdown(nodes)
+    core.setOutput("table", md)
+  } catch (err) {
+    core.setFailed(err.message)
+  }
+}
 
-console.log(process.env)
+run()

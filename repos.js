@@ -3,8 +3,8 @@ const format = require("date-fns/format")
 const formatDistance = require("date-fns/formatDistance")
 const capitalize = str => str.charAt(0).toUpperCase() + str.slice(1)
 
-async function getNodes(login, token, baseUrl) {
-  const octokit = github.getOctokit(token, { baseUrl })
+async function getNodes(token) {
+  const octokit = github.getOctokit(token, { baseUrl: process.env.GITHUB_GRAPHQL_URL })
 
   const {
     user: {
@@ -13,7 +13,7 @@ async function getNodes(login, token, baseUrl) {
   } = await octokit.graphql(
     `
     {
-      user(login: "${login}") {
+      user(login: "${process.env.GITHUB_ACTOR}") {
         repositories(orderBy: { field: UPDATED_AT, direction: DESC }, first: 100, privacy: PUBLIC) {
           nodes {
             id
