@@ -5,8 +5,6 @@ const formatDistance = require("date-fns/formatDistance")
 const capitalize = str => str.charAt(0).toUpperCase() + str.slice(1)
 
 const getNodes = async token => {
-  console.log("NODES", [token.substring(0, 6), process.env.GITHUB_GRAPHQL_URL, process.env.GITHUB_ACTOR])
-  // const octokit = github.getOctokit(token, { baseUrl: process.env.GITHUB_GRAPHQL_URL })
   const octokit = github.getOctokit(token)
   const {
     user: {
@@ -34,7 +32,6 @@ const getNodes = async token => {
     }
   `
   )
-  console.log({ nodes })
   return nodes
 }
 
@@ -59,11 +56,8 @@ const getMarkdown = nodes => {
 const run = async () => {
   try {
     const token = core.getInput("token")
-    console.log("token", token.substring(0, 5))
     const nodes = await getNodes(token)
-    console.log("nodes", nodes)
     const md = getMarkdown(nodes)
-    console.log("markdown", md)
     core.setOutput("table", md)
   } catch (err) {
     core.setFailed(err)
