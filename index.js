@@ -53,7 +53,7 @@ function getMarkdown(nodes) {
   return markdown
 }
 
-function run() {
+async function run() {
   try {
     const token = core.getInput("token")
     console.log("token", token.substring(0, 5))
