@@ -1,6 +1,15 @@
 name: "My Repos"
 description: "Repost to profile"
 
+inputs:
+  token:
+    description: "GitHub Personal Access Token"
+    required: true
+  login:
+    description: "GiyHub Username"
+    required: true
+    default: SubZtep
+
 outputs:
   table:
     description: "Projects markdown table"

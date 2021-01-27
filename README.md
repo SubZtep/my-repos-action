@@ -21,8 +21,7 @@ with:
 
 ## Setup
 
-1. Create a [personal access token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token) with **public_repo** scope.
-2. Add as **GH_ACCESS_TOKEN** to repository secret.
+?
 
 ---
 
@@ -30,3 +29,4 @@ with:
 
 - [Environment variables](https://docs.github.com/en/actions/reference/environment-variables)
 - [Authentication in a workflow](https://docs.github.com/en/actions/reference/authentication-in-a-workflow)
+- [Creating a personal access token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token)
