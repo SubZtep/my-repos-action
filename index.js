@@ -4,8 +4,14 @@ const format = require("date-fns/format")
 const formatDistance = require("date-fns/formatDistance")
 const capitalize = str => str.charAt(0).toUpperCase() + str.slice(1);
 
+const token = core.getInput("token")
+const url = core.getInput("url")
+const login = core.getInput("login")
+
+console.log("XYZ", { url, login, token: token.substr(0, 5), tl: token.length });
+
 (async function () {
-  const octokit = github.getOctokit(core.getInput("token"), { baseUrl: core.getInput("url") })
+  const octokit = github.getOctokit(token, { baseUrl: url })
 
   const {
     user: {
@@ -14,7 +20,7 @@ const capitalize = str => str.charAt(0).toUpperCase() + str.slice(1);
   } = await octokit.graphql(
     `
       {
-        user(login: "${core.getInput('login')}") {
+        user(login: "${login}") {
           repositories(orderBy: { field: UPDATED_AT, direction: DESC }, first: 100, privacy: PUBLIC) {
             nodes {
               id
