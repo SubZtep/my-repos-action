@@ -31,7 +31,7 @@ const getTableRows = (nodes, ago) =>
     ["Project", "Web", "Template", "Archived", "Updated", "Since"],
     Array.from({ length: 6 }, () => " - "),
     ...nodes.map(repo => [
-      `**${repo.name}** — ${repo.description}`,
+      `[**${repo.name}**](${repo.url}) — ${repo.description}`,
       repo.homepageUrl ? `[:link:](${repo.homepageUrl})` : "",
       repo.isTemplate ? ":heavy_check_mark:" : "",
       repo.isArchived ? ":heavy_check_mark:" : "",
