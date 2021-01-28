@@ -37,7 +37,7 @@ const getNodes = async token => {
 
 const getMarkdown = nodes => {
   const heads = ["Project", "Description", "Web", "Archived", "Updated", "Since"]
-  let markdown = `| ${heads.join(" | ")} |\n|${" - |".repeat(heads.length)}`
+  let markdown = `| ${heads.join(" | ")} |\n|${" - |".repeat(heads.length)}\n`
   nodes.forEach(repo => {
     const cols = [
       `[${repo.name}](${repo.url})`,
@@ -47,7 +47,7 @@ const getMarkdown = nodes => {
       capitalize(formatDistance(new Date(), new Date(repo.updatedAt))) + " ago",
       format(new Date(repo.createdAt), "Y"),
     ]
-    markdown += `| ${cols.join(" | ")} |`
+    markdown += `| ${cols.join(" | ")} |\n`
   })
   markdown += "> :hourglass: " + new Date()
   return markdown
