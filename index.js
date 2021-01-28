@@ -40,7 +40,7 @@ const getTableRows = (nodes, ago) =>
     ])
   ]
 
-const getMarkdown = rows => rows.map(row => row.join(" | ")).join("\n")
+const getMarkdown = rows => rows.map(row => `| ${row.join(" | ")} |`).join("\n")
 
 const main = async () => {
   try {
