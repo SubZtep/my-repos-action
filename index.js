@@ -29,7 +29,7 @@ const getNodes = async token => {
 const getTableRows = (nodes, ago) =>
   [
     ["Project", "Web", "Template", "Archived", "Updated", "Since"],
-    Array.from({ length: 5 }, () => " - "),
+    Array.from({ length: 6 }, () => " - "),
     ...nodes.map(repo => [
       `**${repo.name}** — ${repo.description}`,
       repo.homepageUrl ? `[:link:](${repo.homepageUrl})` : "",
@@ -40,7 +40,7 @@ const getTableRows = (nodes, ago) =>
     ])
   ]
 
-const getMarkdown = rows => rows.map(row => `| ${row.join(" | ")} |`).join("\n")
+const getMarkdown = rows => rows.map(row => row.join(" | ")).join("\n")
 
 const main = async () => {
   try {
