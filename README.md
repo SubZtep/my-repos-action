@@ -1,6 +1,6 @@
 # My Repos Action
 
-You do things but don't know what?
+Retrieve your fresh and buried public projects in reverse-chronological order for your GitHub profile!
 
 
 ## Inputs

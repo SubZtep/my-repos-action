@@ -1,15 +1,24 @@
 name: "My Repos"
-description: "Repost to profile"
+author: "SubZtep"
+description: "Retrieve Your Fresh and Buried Public Projects in Reverse-Chronological Order"
 
 inputs:
+  ago:
+    description: "Url and Path for a Timestamp to Image Lambda Function"
+    required: true
+    default: "https://time-passing.netlify.app/.netlify/functions/ago?time="
   token:
     description: "GitHub Personal Access Token"
     required: true
 
 outputs:
-  table:
-    description: "Project list in markdown table"
+  md:
+    description: "Project List in Markdown Table"
 
 runs:
   using: "node12"
   main: "index.js"
+
+branding:
+  icon: "list"
+  color: "green"
