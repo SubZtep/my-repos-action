@@ -26,19 +26,21 @@ const getNodes = async token => {
   return nodes
 }
 
-const getTableRows = (nodes, ago) =>
-  [
-    ["Project", "&nbsp;".repeat(10) + "Updated" + "&nbsp;".repeat(10), "Since"],
-    Array.from({ length: 3 }, (_, index) => (index === 0 ? " :-- " : " --- ")),
-    ...nodes.map(repo => [
-      `[**${repo.name}**](${repo.url}) — ${repo.description}` +
+const getTableRows = (nodes, ago) => [
+  ["Project", "&nbsp;".repeat(10) + "Updated" + "&nbsp;".repeat(10), "Since"],
+  Array.from({ length: 3 }, (_, index) =>
+    index === 0 ? " :-- " : index === 1 ? " :-: " : " --- "
+  ),
+  ...nodes.map(repo => [
+    `[**${repo.name}**](${repo.url})` +
       (repo.homepageUrl ? ` [:spider_web:](${repo.homepageUrl})` : "") +
       (repo.isTemplate ? " :bricks:" : "") +
-      (repo.isArchived ? " :ghost:" : ""),
-      `![${repo.updatedAt}](${ago}${new Date(repo.updatedAt).getTime()})`,
-      new Date(repo.createdAt).getFullYear().toString()
-    ])
-  ]
+      (repo.isArchived ? " :ghost:" : "") +
+      ` — ${repo.description}`,
+    `![${repo.updatedAt}](${ago}${new Date(repo.updatedAt).getTime()})`,
+    new Date(repo.createdAt).getFullYear().toString()
+  ])
+]
 
 const getMarkdown = rows => rows.map(row => `| ${row.join(" | ")} |`).join("\n")
 
