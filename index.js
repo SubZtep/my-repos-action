@@ -1,14 +1,14 @@
 const core = require("@actions/core")
 const github = require("@actions/github");
 
-const getNodes = async token => {
+const getNodes = async (actor, token) => {
   const octokit = github.getOctokit(token)
   const {
     user: {
       repositories: { nodes },
     },
   } = await octokit.graphql(`{
-    user(login: "${process.env.GITHUB_ACTOR}") {
+    user(login: "${actor}") {
       repositories(orderBy: { field: UPDATED_AT, direction: DESC }, first: 100, privacy: PUBLIC) {
         nodes {
           url
@@ -47,8 +47,9 @@ const getMarkdown = rows => rows.map(row => `| ${row.join(" | ")} |`).join("\n")
 const main = async () => {
   try {
     const ago = core.getInput("ago")
+    const actor = core.getInput("actor")
     const token = core.getInput("token")
-    const nodes = await getNodes(token)
+    const nodes = await getNodes(actor, token)
     const rows = getTableRows(nodes, ago)
     const md = getMarkdown(rows)
     core.setOutput("md", md)

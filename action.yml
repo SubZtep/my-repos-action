@@ -10,6 +10,9 @@ inputs:
   token:
     description: "GitHub Personal Access Token"
     required: true
+  actor:
+    description: "GitHub Username"
+    required: true
 
 outputs:
   md:
