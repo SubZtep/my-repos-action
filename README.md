@@ -2,7 +2,7 @@
 
 Retrieve your fresh and buried public projects in reverse-chronological order for your _GitHub_ profile!
 
-This is just an experiment with Actions and API.
+This script is just an experiment with Actions and API. The description should be enough for usage. When is enough? Please feel free [to discuss](https://github.com/SubZtep/my-repos-action/discussions).
 
 ## Inputs
 
@@ -18,7 +18,9 @@ This is just an experiment with Actions and API.
 | --- | --- |
 | _**`md`**_ | String of project list in Markdown table |
 
-## Example workflow
+## Example Workflow
+
+Paste the _yaml_ content below into your profile repository, `.github/workflows/my-repos.yml` path. With this example, you need to manually run the workflow from the Actions tab.
 
 ```yml
 name: My Repos
@@ -30,12 +32,12 @@ jobs:
     runs-on: ubuntu-latest
     name: Update Profile
     steps:
-      - uses: SubZtep/my-repos-action@0.2.7
+      - uses: SubZtep/my-repos-action@v0.3
         id: my-repos
         with:
           ago: https://time-passing.netlify.app/.netlify/functions/ago?time=
           token: ${{ secrets.GITHUB_TOKEN }}
-          actor: $GITHUB_ACTOR
+          actor: ${{ github.actor }}
 
       - uses: actions/checkout@v2
       - run: |
@@ -46,6 +48,8 @@ jobs:
           git commit -m "generated" -a
           git push
 ```
+
+As you see, have a `ME.md` for profile header.
 
 ## What does it look like?
 
