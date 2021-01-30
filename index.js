@@ -36,7 +36,7 @@ const getTableRows = (nodes, ago) => [
       (repo.homepageUrl ? ` [:spider_web:](${repo.homepageUrl})` : "") +
       (repo.isTemplate ? " :bricks:" : "") +
       (repo.isArchived ? " :ghost:" : "") +
-      ` — ${repo.description}`,
+      (repo.description ? ` — ${repo.description}` : ""),
     `![${repo.updatedAt}](${ago}${new Date(repo.updatedAt).getTime()})`,
     new Date(repo.createdAt).getFullYear().toString()
   ])
