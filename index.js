@@ -28,13 +28,13 @@ const getNodes = async token => {
 
 const getTableRows = (nodes, ago) =>
   [
-    ["Project", "Web", "Template", "Archived", "Updated", "Since"],
-    Array.from({ length: 6 }, (_, index) => (index === 0 ? " :-- " : " --- ")),
+    ["Project", "&nbsp;".repeat(10) + "Updated" + "&nbsp;".repeat(10), "Since"],
+    Array.from({ length: 3 }, (_, index) => (index === 0 ? " :-- " : " --- ")),
     ...nodes.map(repo => [
-      `[**${repo.name}**](${repo.url}) — ${repo.description}`,
-      repo.homepageUrl ? `[:link:](${repo.homepageUrl})` : "",
-      repo.isTemplate ? ":heavy_check_mark:" : "",
-      repo.isArchived ? ":heavy_check_mark:" : "",
+      `[**${repo.name}**](${repo.url}) — ${repo.description}` +
+      (repo.homepageUrl ? ` [:spider_web:](${repo.homepageUrl})` : "") +
+      (repo.isTemplate ? " :bricks:" : "") +
+      (repo.isArchived ? " :ghost:" : ""),
       `![${repo.updatedAt}](${ago}${new Date(repo.updatedAt).getTime()})`,
       new Date(repo.createdAt).getFullYear().toString()
     ])
